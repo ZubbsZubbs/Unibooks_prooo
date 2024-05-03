@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block start %}
+<div class="container mt-4">
+    <h2>List of PDF Files</h2>
+    <ul>
+        {% for pdf in pdfs %}
+        <li>
+            <a href="{{ pdf.pdf_file.url }}" target="_blank" download="{{ pdf.title|slugify }}.pdf">
+                Download {{ pdf.title }}
+            </a>
+            <!-- Also providing a view link -->
+            <a href="{{ pdf.pdf_file.url }}" target="_blank" style="margin-left:10px;">
+                View
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

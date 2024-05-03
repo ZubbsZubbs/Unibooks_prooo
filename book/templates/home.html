@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Django Books</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+	<style>
+		body { background-color: #f5f5f5; }
+		.nav-wrapper { background-color: #b58905; }
+		.brand-logo { margin-left: 20px; margin-top: -1%; }
+		.container { margin-top: 20px; }
+		.card { margin: 10px; width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
+		.card-title { font-size: 1.2rem; color: #333; }
+		.range-field { padding: 20px 0; }
+		.input-field { margin-bottom: 20px; }
+		.gfg { margin-left: 40%; font-size: 45px; font-weight: 700; color: green; }
+		.card-content { text-align: center; }
+		#web { margin-left: 85%; font-size: 20px; font-weight: bold; padding: 5px 20px; border-radius: 9px; background-color: rgb(235, 100, 100); }
+		.JT { margin-top: -10%; font-size: 23px; color: black; font-weight: 400; }
+		.ex { margin-top: 2%; }
+		#oooo { background-color: rgb(0, 51, 255); margin-left: 1600px; }
+		.ex23 { font-size: 17px; }
+		.gfg1 { color: rgb(78, 71, 71); font-size: 25px; font-weight: bold; }
+		.gfgd { color: gray; }
+		.btn { padding: 0px 10px; font-weight: bold; }
+	</style>
+</head>
+<body>
+	<nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo"><h4><b>Book Recommendation System </b></h4></a>
+            <button class="btn btn-danger" id="oooo"> <a href="{% url 'custom_logout' %}" style="color: white; text-decoration: none;">Logout</a></button>
+            <!-- Add buttons for Upload and View -->
+            <a href="{% url 'upload_pdf' %}" class="btn yellow darken-1" style="margin-right: 10px;">Upload PDF</a>
+            <a href="{% url 'pdf_list' %}" class="btn yellow darken-1">View Books</a>
+        </div>
+    </nav>
+	<h1 class="gfg"> Unibooks</h1>
+	<br>
+	<br>
+
+
+
+
+
+<!-- Add this in your HTML where the search bar should appear -->
+<div class="input-field col s12">
+    <input type="text" id="search_input" placeholder="Search books...">
+    <button onclick="getBooks()" class="btn">Search</button>
+</div>
+
+
+
+
+
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col m5">
+				<div class="input-field col s12">
+					<select multiple onchange="getBooks()" id="emenities" onchange="getBooks()">
+						<option value="" disabled selected>Genres</option>
+						{% for emenitie in emenities %}
+							<option value="{{emenitie.id}}">{{emenitie.name}}</option>
+						{% endfor %}
+					</select>
+					<label for="emenities"><h3 class="JT"> <i class="fas fa-suitcase"></i> Select Book :</h3></label>
+				</div>
+			</div>
+
+			<div class="col m4 ex">
+				<label for="price"><h3 class="JT"><i class="fas fa-clock"></i> Short By Price : </h3> </label>
+				<p class="range-field">
+					<input type="range" onchange="getBooks()" id="price" min="100" max="10000" value="10" > 
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row" id="show_books_here">
+		</div>
+	</div>
+
+	<script>
+    var show_books_here = document.getElementById("show_books_here");
+
+    $(document).ready(function(){
+        $('select').formSelect();
+    });
+
+    function getBooks() {
+        var price = document.getElementById("price").value;
+        var instance = M.FormSelect.getInstance(document.getElementById('emenities'));
+        var emenities = '';
+        var html = '';
+        var search = document.getElementById("search_input").value; // Getting the value of the search input
+
+        if(instance){
+            emenities = instance.getSelectedValues().join(','); // Joining the emenities array into a comma-separated string
+        }
+
+        // Add the search query to the fetch URL
+        fetch(`/api_books?emenities=${emenities}&search=${search}`)
+        .then(result => result.json())
+        .then(response => {
+            if (response.length > 0) {
+                for (var i = 0; i < response.length; i++) {
+                    html += `
+                        <div class="col s12 m4">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="gfg1">${response[i].book_name}</span>
+                                    <p class="gfgd">${response[i].book_description}</p>
+                                    <img src="${response[i].book_image}" alt="${response[i].book_name}" style="width:100%;height:auto;"> <!-- Ensure image display -->
+                                    <p class="ex23"> Price: <strong> ₹ ${response[i].price} </strong></p>
+                                    <br>
+
+									
+									{% for book in books %}
+   									{% if book.id %}
+									   <a href="{% url 'read_book' book_id=book.id %}">Read {{ book.book_name }}</a>
+										
+										
+    								{% else %}
+       									<p>Book ID is missing!</p>
+									{% endif %}
+									{% endfor %}
+
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            } else {
+                html = '<p>No books found matching your criteria.</p>';
+            }
+            show_books_here.innerHTML = html;
+        }).catch(error => {
+            console.error('Error fetching data:', error);
+            show_books_here.innerHTML = '<p>Error loading books. Please try again later.</p>';
+        });
+    }
+
+    // Load books initially on page load
+    getBooks();
+</script>
+</body>
+</html>
