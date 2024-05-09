@@ -27,7 +27,11 @@ SECRET_KEY = 'django-insecure-dd=r8uli(w&rgo7qn7vc_t7c69cb^m(&9=9en__96w2e$###i8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'unibooks-prooo.onrender.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
