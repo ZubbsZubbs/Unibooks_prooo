@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 Django settings for core project.
 
@@ -140,3 +141,6 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True  # Be cautious with this in production
+=======
+none
+>>>>>>> 6ca4ccb4ebfcabf1c589fd2eef7f46b214372b86
