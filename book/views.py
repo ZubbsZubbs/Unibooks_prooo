@@ -78,7 +78,7 @@ def login_page(request):
 			
 			if user_obj:
 				login(request, user_obj)
-				return redirect('/')
+				return redirect('home')
 			
 			messages.error(request, "Wrong Password")
 			return redirect('/login/')
@@ -116,7 +116,7 @@ def register_page(request):
 
 def custom_logout(request):
 	logout(request)
-	return redirect('login_page')
+	return redirect('/')
 
 
 
@@ -149,3 +149,15 @@ from .models import Book
 def read_book(request, book_id):
     book = get_object_or_404(Book, pk=book_id)  # Use pk for primary key
     return render(request, 'read_book.html', {'book': book})
+
+
+def landing_page(request):
+    return render(request, 'landing.html')
+
+
+
+# views.py
+from django.shortcuts import render
+
+def about_us(request):
+    return render(request, 'about_us.html')

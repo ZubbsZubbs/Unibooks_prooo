@@ -1,4 +1,5 @@
 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,10 +11,10 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+	
 	<style>
 		body { background-color: #f5f5f5; }
-		.nav-wrapper { background-color: #b58905; }
+		.nav-wrapper { background-color: #382ec2; }
 		.brand-logo { margin-left: 20px; margin-top: -1%; }
 		.container { margin-top: 20px; }
 		.card { margin: 10px; width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
@@ -30,12 +31,56 @@
 		.gfg1 { color: rgb(78, 71, 71); font-size: 25px; font-weight: bold; }
 		.gfgd { color: gray; }
 		.btn { padding: 0px 10px; font-weight: bold; }
+
+
+
+
+
+
+
+
+
+
+		.card {
+			margin: 10px;
+			width: 100%;
+			height: 500px; /* Example fixed height */
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			display: flex;
+			flex-direction: column;
+		}
+		
+		.card-content {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between; /* Ensures footer is at the bottom */
+			height: 100%; /* Makes sure content uses all available card space */
+		}
+		
+		.card img {
+			width: 100%; /* Full width */
+			height: 200px; /* Fixed height */
+			object-fit: cover; /* Ensures images cover the area without distorting aspect ratio */
+		}
+		
+		.gfg1, .gfgd { /* Title and description classes */
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 2; /* Limits to 2 lines of text */
+			-webkit-box-orient: vertical;
+		}
+		
+		.ex23 { /* Price section */
+			margin-top: auto; /* Pushes price and read more to the bottom */
+		}
+		
 	</style>
 </head>
 <body>
 	<nav>
         <div class="nav-wrapper">
-            <a href="/" class="brand-logo"><h4><b>Book Recommendation System </b></h4></a>
+            <a href="/" class="brand-logo"><h4><b>Book Recommendation App </b></h4></a>
             <button class="btn btn-danger" id="oooo"> <a href="{% url 'custom_logout' %}" style="color: white; text-decoration: none;">Logout</a></button>
             <!-- Add buttons for Upload and View -->
             <a href="{% url 'upload_pdf' %}" class="btn yellow darken-1" style="margin-right: 10px;">Upload PDF</a>
@@ -154,5 +199,7 @@
     // Load books initially on page load
     getBooks();
 </script>
+
+
 </body>
 </html>

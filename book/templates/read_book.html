@@ -1,12 +1,30 @@
 {% extends "base.html" %}
 
-{% block start %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+</head>
 <div class="container mt-4">
+    
     <h2>{{ book.book_name }}</h2>
     <iframe src="{{ book.book_file.url }}" width="100%" height="500px">
         This browser does not support PDFs. Please download the PDF to view it: <a href="{{ book.book_file.url }}">Download PDF</a>.
     </iframe>
 </div>
 
+<a href="{% url 'about_us' %}">About Us</a>
+
+
+<style>
+    body {
+        background-image: url("{% static 'images/laptop-books-arrangement.jpg' %}");   
+        background-size: cover;
+        background-position: center center;
+        background-attachment: scroll;
+        background-size: cover; 
+        background-repeat: no-repeat;
+    }
+    </style>
 {% endblock %}
 

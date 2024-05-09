@@ -1,12 +1,29 @@
 {% extends "base.html" %}
 
-{% block start %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+</head>
 <div class="container mt-4">
     <h2>Upload PDF</h2>
+    
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Upload</button>
     </form>
 </div>
+
+
+<style>
+    body {
+        background-image: url("{% static 'images/laptop-books-arrangement.jpg' %}");   
+        background-size: cover;
+        background-position: center center;
+        background-attachment: scroll;
+        background-size: cover; 
+        background-repeat: no-repeat;
+    }
+    </style>
 {% endblock %}

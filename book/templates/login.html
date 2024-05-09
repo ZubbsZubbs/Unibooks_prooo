@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
-{% block start %}
+{% load static %}
+{% block content %}
 <div class="container mt-5 mx-auto col-md-4 card shadow p-5" style="background-color: #f7f7f7; border-radius: 20px;">
 	<div class="login-form">
 		{% if messages %}
@@ -24,6 +25,18 @@
 			</div>
 		</form>
 		<p class="text-center" style="color: #555;">Don't have an account? <a href="{% url 'register_page' %}" style="color: #007bff;">Create an Account </a></p>
+		
 	</div>
 </div>
+
+<style>
+	body {
+		background-image: url("{% static 'images/laptop-books-arrangement.jpg' %}");   
+		background-size: cover;
+		background-position: center center;
+		background-attachment: scroll;
+		background-size: cover; 
+		background-repeat: no-repeat;
+	}
+	</style>
 {% endblock %}

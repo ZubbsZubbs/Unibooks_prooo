@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container about-us">
+    <header>
+        {% load static %}
+<link rel="stylesheet" href="{% static '/css/styles.css' %}">
+
+        <h1>About</h1>
+        <p>Learn more about our mission, our team, and our history.</p>
+    </header>
+    <section>
+        <h2>Our Mission</h2>
+        <p>At Unibooks, our mission is to make reading accessible and enjoyable for everyone. We strive to provide a wide selection of books in a user-friendly environment, enhancing the reading experience with innovative features.</p>
+    </section>
+    <section>
+        <h2>Our Team</h2>
+        <div class="team-member">
+            <img src="{% static 'images/thankGod.jpeg' %}" alt="Azubuike ThankGod">
+            <h3>Azubuike ThankGod</h3><br>
+            <p>Founder & CEO</p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'images/confi.jpeg' %}" alt="Orlu Confidence">
+            <h3>Orlu Confidence</h3><br>
+            <p>Chief Technology Officer</p>
+        </div>
+        <!-- Add more team members as needed -->
+    </section>
+    <section>
+        <h2>Our History</h2>
+        <p>Founded in 2024, Unibooks started as a small startup aimed at revolutionizing how people access and read books. Over the years, we've grown significantly, thanks to our commitment to innovation and customer service.</p>
+    </section>
+    <footer>
+        <p>&copy; 2024 Unibooks. All rights reserved.</p>
+    </footer>
+</div>
+{% endblock %}
+
+
+
+background-image: url("{% static 'images/bk.jpg' %}");

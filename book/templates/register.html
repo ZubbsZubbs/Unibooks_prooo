@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
-{% block start %}
+{% load static %}
+{% block content %}
 <div class="container mt-5 mx-auto col-md-4 card shadow p-5">
 	<div class="login-form">
+		
 		{% if messages %}
 			{% for message in messages %}
 				<div class="alert alert-success {{ message.tags }}" role="alert">
@@ -35,4 +37,16 @@
 	.alert { background-color: #f44336; color: #fff; }
 </style>
 
+
+
+<style>
+	body {
+		background-image: url("{% static 'images/laptop-books-arrangement.jpg' %}");   
+		background-size: cover;
+		background-position: center center;
+		background-attachment: scroll;
+		background-size: cover; 
+		background-repeat: no-repeat;
+	}
+	</style>
 {% endblock %}

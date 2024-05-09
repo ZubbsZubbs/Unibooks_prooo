@@ -1,8 +1,12 @@
 {% extends "base.html" %}
-
-{% block start %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+</head>
 <div class="container mt-4">
     <h2>List of PDF Files</h2>
+    
     <ul>
         {% for pdf in pdfs %}
         <li>
@@ -17,4 +21,15 @@
         {% endfor %}
     </ul>
 </div>
+
+<style>
+    body {
+        background-image: url("{% static 'images/laptop-books-arrangement.jpg' %}");   
+        background-size: cover;
+        background-position: center center;
+        background-attachment: scroll;
+        background-size: cover; 
+        background-repeat: no-repeat;
+    }
+    </style>
 {% endblock %}

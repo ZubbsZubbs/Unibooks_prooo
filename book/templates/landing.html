@@ -1,0 +1,132 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+<div class="container">
+    <header>
+        <h1>Welcome to Uniboooks!</h1>
+        <p>Explore your favorite genre of books and read along</p>
+        <a href="{% url 'login_page' %}" class="btn btn-primary">Get Started</a>
+    </header>
+    
+</section>
+<!-- New Highlighted Features Section -->
+<section class="highlighted-features">
+    <div class="highlighted-feature">
+        <img src="{% static 'images/bk_recommender.jpg' %}" alt="Feature 1">
+        <h4>Instant Book Previews</h4>
+        <p>Get a sneak peek into the books with our instant preview feature.</p>
+    </div>
+    <div class="highlighted-feature">
+        <img src="{% static 'images/bk.jpg' %}" alt="Feature 2">
+        <h4>Real-Time Availability</h4>
+        <p>Check book availability in real-time across all platforms.</p>
+    </div>
+    <div class="highlighted-feature">
+        <img src="{% static 'images/bkk.jpg' %}" alt="Feature 1">
+        <h4>Interactive Reading Sessions</h4>
+        <p>Join live interactive sessions with authors and fellow readers.</p>
+    </div>
+</section>
+
+
+
+
+    <footer>
+        <p>&copy; 2024 Unibooks. All rights reserved.</p>
+    </footer>
+</div>
+
+{% load static %}
+<style>
+
+    .highlighted-features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        text-align: center;
+        padding: 20px 0;
+    }
+    
+    .highlighted-feature img, .highlighted-feature video {
+        width: 100%; /* Ensures that the media covers the column width */
+        height: auto;
+        border-radius: 8px; /* Adds rounded corners to the media */
+    }
+    
+    .highlighted-feature h4 {
+        margin-top: 10px;
+        font-size: 1.4rem;
+    }
+    
+    .highlighted-feature p {
+        font-size: 1rem;
+        color: #666;
+    }
+    
+    /* Enhancing visual separation and focus */
+    .features, .highlighted-features {
+        margin-bottom: 40px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    
+
+
+
+
+
+
+
+
+body {
+    background-image: url("{% static 'images/laptop-books-arrangement.jpg' %}");   
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover; 
+    background-repeat: no-repeat;
+}
+
+.btn-primary {
+   
+    /* Hover effect */
+    &:hover {
+        background-color: #0056b3;
+        box-shadow: 0 8px 25px rgba(0, 123, 255, 0.7);
+        text-decoration: none; /* Remove underline from links */
+    }
+}
+
+
+
+
+header {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+}
+
+.features {
+    background: rgba(215, 215, 216, 0.8); /* Light background for features section */
+    padding: 40px;
+    border-radius: 8px; /* Rounded corners */
+    margin-top: 20px; /* Space from header */
+}
+
+.feature-item, h1{
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    /* Hover effect */
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+}
+
+</style>
+
+
+
+{% endblock %}
